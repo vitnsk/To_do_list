@@ -6,7 +6,7 @@ const todoItem= {
       template: `
       <ul>
       <li>{{todo.title}}  
-     
+      <button @click="removeTask(index)">Удалить</button>
       </li>  
       </ul>
       `,
