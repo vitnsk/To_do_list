@@ -1,34 +1,41 @@
 
 const todoItem= {
-props:['todo'],
-
+  props: ["todo","index"],      
     
-    
-    
-        template: `
-      <div>{{todo.title}}
-      <input type="checkbox" :checked="todo.completed" />
       
-      
-      </div>
-      
+      template: `
+      <ul>
+      <li>{{todo.title}}  
+     
+      </li>  
+      </ul>
       `,
+
+
         };
         
         const app = Vue.createApp({ 
-          data(){
+          data(){            
+
                 return{
                     todoList: [],
                 };
             },
-
+            methods: {
+              
+              removeTask(index) {
+                  this.todoList.splice(index, 1)
+              }
+          },
 
     components:{
+       "li": todoItem,
+
       "todo-item": todoItem,
        },
 
        mounted(){
-        // // fetch("https://jsonplaceholder.typicode.com/")
+        
         fetch('https://jsonplaceholder.typicode.com/todos/')
         .then((response)=>response.json())
         .then((json)=>(this.todoList=json));
@@ -43,32 +50,3 @@ props:['todo'],
 
 
 
-// const counter={
-// props: ["todo","index"],
-// template: `
-// <div> {{index}} - {{todo.title}}
-// <input type="checkbox" :checked="todo.completed" />
-// </div>
-// `,
-// }
-
-// const app=Vue.createApp({  
-// data(){
-//     return{
-//         todoList: [],
-//     };
-// },
-
-// components:{
-// "todo-item": todoItem,
-// },
-
-// mounted(){
-// // fetch("https://jsonplaceholder.typicode.com/")
-// fetch("https://jsonplaceholder.typicode.com/todos/")
-// .then((response)=>response.json())
-// .then((json)=>(this.todolist=json));
-// },
-// })
-
-// app.mount("#app");

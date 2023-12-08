@@ -11,9 +11,24 @@
     
     <div id="app">
 
+      <h1>
+        To-do list
+    </h1>
+    <div>
+        <label for="task">Новая задача:</label>
+        <input type="text" id="task" v-model="newTask">
+        <button @click="addTask">Добавить</button>
+    </div>
+
+   
+      
       <todo-item
-      v-for="todo in todoList" :todo="todo"     
-    ></todo-item>
+      v-for="(todo, index) in todoList"
+      :todo="todo"
+      :index="index"      
+    
+    >  </todo-item>   
+    
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
